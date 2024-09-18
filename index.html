@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SemesterProject2 - An auction site" />
+    <meta name="author" content="Rena Hashimi" />
+    <link rel="stylesheet" href="/dist/css/styles.css">
+    <script type="module" src="/src/js/index.mjs"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Tenor+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <title>MIDAS TOUCH - HOMEPAGE</title>
+  </head>
+  <body class="justify-content-center m-auto" style="max-width: 1100px">
+    <header>
+      <header>
+        <div id="header-placeholder"></div>
+      </header>
+    </header>
+    <main class="mb-5 pb-5">
+      <div
+        class="container-fluid headIndex m-0 p-0 position-relative font-raleway"
+      >
+        <div class="row m-0 p-0 position-relative">
+          <!-- Full-width image -->
+          <img
+            class="m-0 p-0 w-100"
+            src="./src/images/bid1.jpg"
+            alt="Background image"
+          />
+
+          <!-- Full overlay with dark background covering the entire image -->
+          <div
+            class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center bg-dark bg-opacity-75 text-white"
+          >
+            <!-- Centered text over image -->
+            <span class="fs-6">WELCOME TO</span>
+            <h1 class="headH1 font-tenor text-uppercase fs-1 py-2 text-shadow">
+              Midas Touch
+            </h1>
+            <p class="font-raleway text-center fs-6 mt-n2">
+              Your destination for the best auctions and exclusive deals.
+            </p>
+
+            <!-- Listings button -->
+            <div class="row">
+              <ul>
+                <li>
+                  <a
+                    href="./feed/listings/"
+                    class="font-raleway text-center m-auto rounded-pill fs-6 bg-white text-primary border border-1 border-primary px-3 py-1"
+                    >LISTINGS</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUOTES & CONTAINER FOR SINGLE LISTING -->
+      <div
+        class="container-fluid d-block d-sm-flex font-kolker mt-4 py-4 bg-primary justify-content-center"
+      >
+        <div
+          class="row quote1 font-kolker justify-content-center text-center text-white"
+        >
+          <p class="mb-n4">" Going once,</p>
+          <p class="mb-n4">going twice</p>
+          <p>sold! "</p>
+        </div>
+        <div class="row">
+          <div class="container-fluid mt-2" id="homePageContainer"></div>
+        </div>
+      </div>
+
+      <!-- IMG & TXT CONTENT -->
+      <div class="container my-5 p-0 position-relative font-raleway">
+        <img src="/src/images/midas3.jpg" alt="Midas" class="w-100" />
+        <div class="text-overlay2">
+          <div class="row d-md-flex">
+            <div class="col-12 text-secondary">
+              <h2>WHAT DO WE EMBRACE</h2>
+              <p>
+                At Midas Touch, we embrace the essence of Midas's story, but
+                with a modern twist. Just as Midas sought to transform his
+                surroundings, our auction house aims to transform your
+                experience, turning each opportunity into something
+                extraordinary. Whether you're buying or selling, our platform
+                brings unparalleled value and expertise to ensure that every
+                transaction is golden.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LISTINGS -->
+      <div class="container-fluid mt-2"></div>
+
+      <!-- LOGIN FORM - OVERLAY-->
+      <div id="overlay-container"></div>
+    </main>
+    <footer>
+      <!-- FOOTER -->
+      <div id="footerContainer"></div>
+    </footer>
+  </body>
+</html>
