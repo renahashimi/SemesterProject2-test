@@ -43,7 +43,7 @@ export async function renderSingleItem() {
 
     const userContainer = document.createElement("div");
     userContainer.classList.add(
-      "font-tenor", "m-auto", "my-3", "p-2", "pb-3", "w-75", "border-bottom", "border-4", "border-primary"
+      "font-tenor", "m-auto", "my-3", "p-0", "pb-3", "w-75", "border-bottom", "border-4", "border-primary"
     );
 
     const userName = document.createElement("h1");
@@ -61,7 +61,7 @@ export async function renderSingleItem() {
     userUpdated.classList.add("mt-n3", "text-secondary");
 
     const goBackBtn = document.createElement("button");
-    goBackBtn.textContent = "Go back to listings";
+    goBackBtn.textContent = "Go back";
     goBackBtn.classList.add("btn", "btn-white", "d-flex", "fs-7", "border", "border-2", "border-secondary", "text-uppercase", "my-2", "px-3", "py-0", "text-center");
     goBackBtn.addEventListener("click", () => history.back());
    
@@ -94,7 +94,7 @@ export async function renderSingleItem() {
       const userListingsData = await userListingsResponse.json();
       const userListings = userListingsData.data.listings || [];
       
-      console.log('User Listings:', userListings); // Check the listings data
+      console.log('User Listings:', userListings);
       
       const listingContainer = document.createElement("div");
       listingContainer.classList.add("listing-scroll-container", "justify-content-start");
@@ -116,7 +116,7 @@ export async function renderSingleItem() {
           </div>`;
         singleHeader.style.display = "none";
         userSingleListingContainer.style.height = "200px";
-        lis.classList.add('no-scroll');
+        listingContainer.classList.add('no-scroll');
       }
       
       console.log('userSingleListingContainer content:', userSingleListingContainer.innerHTML);
