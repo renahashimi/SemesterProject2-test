@@ -12,7 +12,7 @@ export default function router() {
     case "/":
     case "/index.html":
       console.log("Rendering homepage...");
-      handlers.renderSwitchListings();
+      handlers.renderHomeListings();
       console.log("Homepage setup complete.");
       break;
 
