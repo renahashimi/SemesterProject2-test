@@ -8,10 +8,10 @@
 }
 
 html {
-  background-image: url(/src/images/grunge-wall.jpg);
-  background-size: cover;
+  background-image: url(/src/images/geometric.jpg);
+  background-size: 300px;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
 }
 
 header, body, main, footer {
@@ -20,6 +20,7 @@ header, body, main, footer {
   max-width: 1200px !important;
   justify-content: center !important;
   margin: auto !important;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px !important;
 }
 
 footer {
@@ -77,9 +78,9 @@ footer {
 
 button:hover, a:hover {
   transform: scale(1.1);
+  transition: transform 0.3s ease-out, border-radius 0.3s ease-out;
   border-radius: 10%;
-  background-color: transparent !important;
-  color: #2C2C2C !important;
+  color: #708090 !important;
 }
 
 a,
@@ -190,6 +191,12 @@ button {
   color: #424041 !important;
 }
 
+.ggsTxt {
+  background: linear-gradient(90deg, #75909A, #2C2C2C, #708090);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* SPINNER */
 .spinner {
   border: 5px solid #708090;
@@ -221,9 +228,11 @@ button {
   font-weight: 400;
   font-style: normal;
   font-size: 4em;
-  display: inline-block;
-  transform: rotate(-20deg);
-  transform-origin: center;
+  flex-grow: 3 !important;
+}
+
+#homeImg {
+  object-fit: cover;
 }
 
 /* OVERLAY LOGIN */
@@ -317,12 +326,6 @@ button {
   border: 5px solid transparent;
 }
 
-.listingTitle {
-  background: white;
-  background: linear-gradient(160deg, white 110px, #424041, #2C2C2C);
-  border-bottom: 1px solid #424041;
-}
-
 #latestListings {
   justify-content: center;
 }
@@ -355,14 +358,17 @@ button {
   scale: 3;
 }
 
-#singleListings .postContainer {
+#singleListings .postAllContent {
   display: flex;
   margin: auto;
   justify-content: center;
 }
 
-#userSingleListings {
-  border: 2px solid red; /* To debug overflow */
+#singleListings .postcard-image {
+  height: 400px !important;
+  width: 300px !important;
+  margin: -30px auto 0 !important;
+  padding: 0 !important;
 }
 
 #userSingleListings {
@@ -370,7 +376,6 @@ button {
   overflow-x: auto;
   overflow-y: hidden;
   height: 100%;
-  height: 300px;
   gap: 10px;
   padding: 10px;
   border-radius: 5px;
@@ -453,21 +458,6 @@ button {
   text-align: center;
 }
 
-.text-overlay2 {
-  position: absolute;
-  display: flex;
-  top: 80%;
-  left: 0;
-  width: 100%;
-  background: rgba(244, 244, 244, 0.5);
-  color: white;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  z-index: 10;
-  text-align: center;
-}
-
 .text-overlay p,
 .text-overlay h1,
 .text-overlay .h1,
@@ -476,10 +466,50 @@ button {
   padding: 10px;
 }
 
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+  border-radius: 50%;
+}
+
+.bi-arrow-left-circle,
+.bi-arrow-right-circle {
+  font-size: 3rem !important;
+  color: white;
+}
+
+/* EMBRACE CONTAINER */
+#embraContainer {
+  position: relative;
+}
+
+/* For mobile screens: < 570px */
+@media (max-width: 767px) {
+  .text-overlay2 h3, .text-overlay2 .h3 {
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    z-index: 1;
+    text-align: center;
+    padding-right: 10px;
+    font-size: 7vw;
+    backdrop-filter: blur(5px);
+  }
+  .embraceTxt {
+    background-color: #2C2C2C;
+    color: white;
+  }
+  .text-overlay2 p {
+    padding: 20px;
+  }
+}
 /* MEDIA */
 @media (min-width: 400px) {
   .text-overlay {
     top: 10%;
+  }
+  .postCard-simple {
+    width: 250px !important;
   }
 }
 @media (min-width: 570px) {
@@ -497,7 +527,7 @@ button {
   }
   #contactH1 {
     font-size: 3em !important;
-    padding: 0 30px !important;
+    padding: 10px !important;
   }
   #aboutUsContent {
     display: flex;
@@ -533,7 +563,7 @@ button {
 }
 @media (min-width: 768px) {
   main {
-    margin-top: 80px !important;
+    margin: 60px auto -20px !important;
   }
   footer {
     margin-bottom: 15px !important;
@@ -541,6 +571,9 @@ button {
   .headIndex h1, .headIndex .h1 {
     display: block;
     font-size: 4em !important;
+  }
+  .headP {
+    font-size: 1.1em !important;
   }
   .postcard-image, .scrollbar-visible {
     height: 300px !important;
@@ -571,6 +604,28 @@ button {
     flex-direction: column;
     width: 100%;
     padding: 20px 50px;
+  }
+  .postCard-simple {
+    width: 320px !important;
+  }
+  .text-overlay2 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    color: white;
+  }
+  .text-overlay2 h3, .text-overlay2 .h3 {
+    font-size: 2rem;
+    padding-bottom: 20px;
   }
 }
 /*!
@@ -13610,13 +13665,13 @@ textarea.form-control-lg {
   font-family: "Georgia, 'Times New Roman', Times, serif";
 }
 
-.prata-regular {
+.font-prata {
   font-family: "Prata", serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.kolker-brush-regular {
+.font-kolker {
   font-family: "Kolker Brush", cursive;
   font-weight: 400;
   font-style: normal;
