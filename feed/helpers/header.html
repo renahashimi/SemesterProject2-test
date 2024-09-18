@@ -16,116 +16,114 @@
 </head>
 <body>
     <!-- HEADER FOR ALL PAGES -->
-    <header>
-        <!-- DESKTOP HEADER -->
-        <div class="container-fluid d-none d-md-flex bg-white fixed-top text-primary font-tenor p-0 pt-3 shadow-sm border-primary border-bottom border-2 justify-content-between shadowBorder30" style="max-width: 1200px;">
-            <div class="row justify-content-start ps-4">
-                <h1 class="justify-content-start font-tenor text-primary d-flex fs-6">
-                    <a href="/index.html" class="d-flex align-items-center">
-                        MIDAS
-                        <img class="mt-n3 pt-1" src="/src/images/gavel1.png" alt="mt-logo" style="width: 3rem;">
-                        TOUCH
-                    </a>
-                </h1>   
+    <!-- DESKTOP HEADER -->
+    <div class="container-fluid d-none d-md-flex bg-white fixed-top text-primary font-tenor p-0 pt-3 shadow-sm border-primary border-bottom border-2 justify-content-between shadowBorder30" style="max-width: 1200px;">
+        <div class="row justify-content-start ps-4">
+            <h1 class="justify-content-start font-tenor text-primary d-flex fs-4 mt-n2">
+                <a href="/index.html" class="d-flex align-items-center">
+                    MIDAS
+                    <img class="mt-n1 mx-2 pt-1" src="/src/images/gavel1.png" alt="mt-logo" style="width: 3rem;">
+                    TOUCH
+                </a>
+            </h1>   
+        </div>
+        <div class="row font-prata justify-content-between d-none d-sm-flex text-primary fs-7 mt-1 me-3">
+            <div class="col-2">
+                <a href="/">
+                    <button id="desktop-profile-link" class="border-0 bg-white text-uppercase">Home</button>
+                </a>
             </div>
-            <div class="row justify-content-between d-none d-sm-flex text-primary fs-7 mt-1 me-3">
-                <div class="col-2">
-                    <a href="/">
-                        <button id="desktop-profile-link" class="border-0 bg-white text-uppercase">Home</button>
-                    </a>
-                </div>
-                <div class="col-2">
-                    <a href="/feed/profile/">
-                        <button id="desktop-profile-link" class="border-0 bg-white text-uppercase">Profile</button>
-                    </a>
-                </div>
-                <div class="col-2">
-                    <a href="/feed/listings/">
-                        <button id="desktop-listings-link" class="border-0 bg-white text-uppercase">Listings</button>
-                    </a>
-                </div>
-                <div class="col-2">
-                    <a href="/feed/contact/">
-                        <button id="desktop-contact-link" class="border-0 bg-white text-uppercase">CONTACT</button> 
-                    </a>
-                  </div>            
-                <div class="col-2">
-                    <!-- Login Button (Initially visible) -->
-                    <button id="desktop-open-overlay-btn" class="border-0 bg-white text-uppercase open-btn">
-                        <p class="text-primary">LOGIN</p>
-                    </button>   
-        
-                    <!-- Logout Button (Initially hidden) -->
-                    <button id="desktop-logout-btn" class="border-0 bg-white text-uppercase open-btn" style="display: none;">
-                        <p class="text-primary">LOGOUT</p>
-                    </button>
-                </div>
+            <div class="col-2">
+                <a href="/feed/profile/">
+                    <button id="desktop-profile-link" class="border-0 bg-white text-uppercase">Profile</button>
+                </a>
+            </div>
+            <div class="col-2">
+                <a href="/feed/listings/">
+                    <button id="desktop-listings-link" class="border-0 bg-white text-uppercase">Listings</button>
+                </a>
+            </div>
+            <div class="col-2">
+                <a href="/feed/contact/">
+                    <button id="desktop-contact-link" class="border-0 bg-white text-uppercase">CONTACT</button> 
+                </a>
+                </div>            
+            <div class="col-2">
+                <!-- Login Button (Initially visible) -->
+                <button id="desktop-open-overlay-btn" class="border-0 bg-white text-uppercase open-btn">
+                    <p class="text-primary">LOGIN</p>
+                </button>   
+    
+                <!-- Logout Button (Initially hidden) -->
+                <button id="desktop-logout-btn" class="border-0 bg-white text-uppercase open-btn" style="display: none;">
+                    <p class="text-primary">LOGOUT</p>
+                </button>
             </div>
         </div>
+    </div>
 
-        <!-- MOBILE HEADER -->
-        <div class="container-fluid d-flex d-md-none mt-2 text-primary shadow-sm border-primary border-bottom border-2 justify-content-center shadowBorder30">
-            <div class="row justify-content-start mt-2">
-                <h1 class="justify-content-start font-tenor text-primary d-flex fs-5 m-1">
-                    <a href="/index.html" class="d-flex align-items-center">
-                        MIDAS
-                        <img class="mx-2 mt-n3 pt-1" src="/src/images/gavel1.png" alt="mt-logo" style="width: 3rem;">
-                        TOUCH
+    <!-- MOBILE HEADER -->
+    <div class="container-fluid d-flex d-md-none mt-2 text-primary shadow-sm border-primary border-bottom border-2 justify-content-center shadowBorder30">
+        <div class="row justify-content-start mt-2">
+            <h1 class="justify-content-start font-tenor text-primary d-flex fs-4 mt-n2">
+                <a href="/index.html" class="d-flex align-items-center">
+                    MIDAS
+                    <img class="mt-n1 mx-2 pt-1" src="/src/images/gavel1.png" alt="mt-logo" style="width: 3rem;">
+                    TOUCH
+                </a>
+            </h1>            
+        </div>
+    </div>
+    
+    <!-- MOBILE NAVIGATION -->
+    <div class="container-fluid d-md-none fixed-bottom bg-white justify-content-between m-auto text-center p-0 shadow-lg border-top border-primary border-1 rounded-top">
+        <div class="row justify-content-around text-secondary bg-white m-auto font-raleway shadowTop pb-2">
+            <div class="col-2 ps-2">
+                <button id="mobile-home-link" class="border-0 bg-transparent">
+                    <a href="/index.html">
+                        <i class="bi bi-house fs-1"></i>
+                        <p class="fs-9 mt-n2 text-secondary">HOME</p>
                     </a>
-                </h1>            
+                </button> 
+            </div>
+            <div class="col-2 px-1">
+                <button id="mobile-listings-link" class="border-0 bg-transparent">
+                    <a href="/feed/listings/">
+                        <i class="bi bi-view-list mx-2 fs-1 logo"></i>
+                        <p class="fs-9 mt-n2 text-secondary">LIST</p>
+                    </a>
+                </button>                   
+            </div>
+            <div class="col-2 px-1">
+                <button id="new-listing-link" class="border-0 bg-transparent">
+                    <a href="/feed/listings/create/">
+                        <i class="bi bi-plus-circle mx-2 fs-1 logo"></i>
+                        <p class="fs-9 mt-n2 text-secondary">ADD</p>
+                    </a>
+                </button>                   
+            </div>
+            <div class="col-2 px-1">
+                <button id="mobile-profile-link" class="border-0 bg-transparent">
+                    <a href="/feed/profile/">
+                        <i class="bi bi-person fs-1 logo"></i>
+                        <p class="fs-9 mt-n2 text-secondary">PROFILE</p>
+                    </a>
+                </button>
+            </div>
+            <div class="col-2 px-1">
+                <!-- Login Button (Initially visible) -->
+                <button id="mobile-open-overlay-btn" class="border-0 bg-white open-btn">
+                    <i class="bi bi-door-open mx-2 fs-1 logo"></i>
+                    <p class="fs-9 mt-n2 text-secondary">LOGIN</p>              
+                </button>    
+    
+                <!-- Logout Button (Initially hidden) -->
+                <button id="mobile-logout-btn" class="border-0 bg-white open-btn" style="display: none;">
+                    <i class="bi bi-door-closed mx-2 fs-1 logo"></i>
+                    <p class="fs-9 mt-n2 text-secondary">LOGOUT</p>              
+                </button> 
             </div>
         </div>
-        
-        <!-- MOBILE NAVIGATION -->
-        <div class="container-fluid d-md-none fixed-bottom bg-white justify-content-between m-auto text-center p-0 shadow-lg border-top border-primary border-1 rounded-top">
-            <div class="row justify-content-around text-secondary bg-white m-auto font-raleway shadowTop pb-2">
-                <div class="col-2 ps-2">
-                    <button id="mobile-home-link" class="border-0 bg-transparent">
-                        <a href="/index.html">
-                            <i class="bi bi-house fs-1"></i>
-                            <p class="fs-9 mt-n2 text-secondary">HOME</p>
-                        </a>
-                    </button> 
-                </div>
-                <div class="col-2 px-1">
-                    <button id="mobile-listings-link" class="border-0 bg-transparent">
-                        <a href="/feed/listings/">
-                            <i class="bi bi-view-list mx-2 fs-1 logo"></i>
-                            <p class="fs-9 mt-n2 text-secondary">LIST</p>
-                        </a>
-                    </button>                   
-                </div>
-                <div class="col-2 px-1">
-                    <button id="new-listing-link" class="border-0 bg-transparent">
-                        <a href="/feed/listings/create/">
-                            <i class="bi bi-plus-circle mx-2 fs-1 logo"></i>
-                            <p class="fs-9 mt-n2 text-secondary">ADD</p>
-                        </a>
-                    </button>                   
-                </div>
-                <div class="col-2 px-1">
-                    <button id="mobile-profile-link" class="border-0 bg-transparent">
-                        <a href="/feed/profile/">
-                            <i class="bi bi-person fs-1 logo"></i>
-                            <p class="fs-9 mt-n2 text-secondary">PROFILE</p>
-                        </a>
-                    </button>
-                </div>
-                <div class="col-2 px-1">
-                    <!-- Login Button (Initially visible) -->
-                    <button id="mobile-open-overlay-btn" class="border-0 bg-white open-btn">
-                        <i class="bi bi-door-open mx-2 fs-1 logo"></i>
-                        <p class="fs-9 mt-n2 text-secondary">LOGIN</p>              
-                    </button>    
-        
-                    <!-- Logout Button (Initially hidden) -->
-                    <button id="mobile-logout-btn" class="border-0 bg-white open-btn" style="display: none;">
-                        <i class="bi bi-door-closed mx-2 fs-1 logo"></i>
-                        <p class="fs-9 mt-n2 text-secondary">LOGOUT</p>              
-                    </button> 
-                </div>
-            </div>
-        </div>
-    </header>
+    </div>
 </body>
 </html>
