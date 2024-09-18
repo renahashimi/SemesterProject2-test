@@ -59,9 +59,9 @@ export function createListingCard(listing, buttonType) {
   postAllContent.classList.add(
     "postAllContent",  
     "d-block", 
-    "rounded", 
     "shadowBorder10",
-    "justify-content-center"
+    "justify-content-center",
+    "rounded-4"
   );
   
   const headContent = document.createElement("div")
@@ -215,58 +215,67 @@ export function createListingCard(listing, buttonType) {
   const imgContent = document.createElement("div");
   imgContent.style.objectFit = "cover";
   imgContent.style.height = "320px";
-  imgContent.classList.add(
-    "img-content"
-  );
-
+  imgContent.classList.add("img-content");
+  
   // Image
-if (listing.media && listing.media.length > 0) {
-  if (listing.media.length === 1) {
-    const img = document.createElement("img");
-    img.src = listing.media[0].url;
-    img.alt = listing.media[0].alt || "listing image";
-    img.style.width = "100%";
-    img.style.height = "300px";
-    img.style.objectFit = "cover";
-    img.style.borderRadius = "5px";
-    img.classList.add(
-      "postcard-image", 
-      "border", 
-      "border-2", 
-      "border-secondary"
-    );
-    imgContent.appendChild(img);
-  } else {
-    const scrollContainer = document.createElement("div");
-    scrollContainer.style.display = "flex";
-    scrollContainer.style.overflowX = "auto";
-    scrollContainer.style.overflowY = "hidden"; 
-    scrollContainer.style.width = "100%";
-    scrollContainer.style.width = "300px";
-    scrollContainer.style.height = "300px";
-    scrollContainer.style.borderRadius = "5px";
-    scrollContainer.classList.add(
-      "scrollbar-visible",
-      "border", 
-      "border-2", 
-      "border-secondary", 
-      "m-1"
-    );
-
-    listing.media.forEach((mediaItem) => {
+  if (listing.media && listing.media.length > 0) {
+    if (listing.media.length === 1) {
       const img = document.createElement("img");
-      img.src = mediaItem.url;
-      img.alt = mediaItem.alt || "listing image";
-      img.style.height = "100%";
-      img.style.flexShrink = "0";
-      img.style.marginRight = "10px";
-      img.style.width = "auto"; 
+      img.src = listing.media[0].url;
+      img.alt = listing.media[0].alt || "listing image";
+      img.style.width = "100%";
+      img.style.height = "300px";
       img.style.objectFit = "cover";
       img.style.borderRadius = "5px";
-      scrollContainer.appendChild(img);
-    });
-    imgContent.appendChild(scrollContainer);
-  }
+      img.classList.add(
+        "postcard-image", 
+        "border", 
+        "border-2", 
+        "border-secondary"
+      );
+      img.addEventListener("click", () => {
+        openImageModal(img.src, img.alt);
+      });
+      imgContent.appendChild(img);
+    } else {
+      const scrollContainer = document.createElement("div");
+      scrollContainer.style.display = "flex";
+      scrollContainer.style.overflowX = "auto";
+      scrollContainer.style.overflowY = "hidden"; 
+      scrollContainer.style.width = "100%";
+      scrollContainer.style.height = "300px";
+      scrollContainer.style.borderRadius = "5px";
+      scrollContainer.classList.add(
+        "scrollbar-visible",
+        "border", 
+        "border-2", 
+        "border-secondary", 
+        "m-1"
+      );
+  
+      listing.media.forEach((mediaItem) => {
+        const img = document.createElement("img");
+        img.src = mediaItem.url;
+        img.alt = mediaItem.alt || "listing image";
+        img.style.height = "100%";
+        img.style.flexShrink = "0";
+        img.style.marginRight = "10px";
+        img.style.width = "auto"; 
+        img.style.objectFit = "cover";
+        img.style.borderRadius = "5px";
+        img.classList.add(
+          "postcard-image", 
+          "border", 
+          "border-2", 
+          "border-secondary"
+        );
+        img.addEventListener("click", () => {
+          openImageModal(img.src, img.alt);
+        });
+        scrollContainer.appendChild(img);
+      });
+      imgContent.appendChild(scrollContainer);
+    }
   } else {
     // Use default image if no images are available
     const defaultImg = document.createElement("img");
@@ -278,12 +287,14 @@ if (listing.media && listing.media.length > 0) {
     defaultImg.style.borderRadius = "5px";
     defaultImg.classList.add(
       "postcard-image", 
-      "m-auto", "border", 
+      "m-auto", 
+      "border", 
       "border-2", 
       "border-secondary"
     );
     imgContent.appendChild(defaultImg);
   }
+  
 
   // Title
   const title = document.createElement("h2");
@@ -652,3 +663,32 @@ if (listing.media && listing.media.length > 0) {
   return postContainer;
 }
 
+
+
+export function openImageModal(src, alt) {
+  const existingModal = document.getElementById('imageModal');
+  if (existingModal) {
+    existingModal.remove();
+  }
+
+  const modalHTML = `
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <img src="${src}" alt="${alt}" style="width: 100%; height: auto;"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+  const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+  imageModal.show();
+
+  // Remove modal on close
+  document.getElementById('imageModal').addEventListener('hidden.bs.modal', () => {
+    document.getElementById('imageModal').remove();
+  });
+}
