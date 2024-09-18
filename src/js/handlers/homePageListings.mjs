@@ -1,65 +1,131 @@
+import { getListings } from "../api/listings/get.mjs";
 import { simpleListingCard } from "../templates/simpleCardTemplate.mjs";
-import { fetchListings } from "./renderListings.mjs";
 
-// HOMEPAGE LISTING 
-export async function renderSwitchListings() {
-  const containerHomePage = document.getElementById('homePageContainer');
+export async function renderHomeListings() {
+  const switchContainer = document.getElementById("switchContainer");
+  const carouselContainer = document.getElementById("carouselContainer");
 
-  if (!containerHomePage) {
-    console.error('Container element not found.');
+  if (!switchContainer || !carouselContainer) {
+    console.error("Container element(s) not found.");
     return;
   }
 
-  containerHomePage.innerHTML = ''; // Clear any existing content
+  try {
+    const listings = await getListings(1, 30);
 
-  // Fetch listings
-  const listings = await fetchListings();
-  if (listings.length > 0) {
-    displayAndSwitchListings(listings);  // Call the switch function to cycle through listings
-  } else {
-    containerHomePage.innerHTML = '<p>No listings available.</p>';  // Fallback if no listings are available
-  }
-}
-
-// Function to display and switch listings on the homepage
-let switchInterval;
-export function displayAndSwitchListings(listings) {
-  const containerHomePage = document.getElementById('homePageContainer');
-  let currentIndex = 0;
-
-  if (switchInterval) {
-    clearInterval(switchInterval);  // Clear any previous interval to avoid multiple switches
-  }
-
-  // Function to display a set of 2 listings
-  function showListings() {
-    containerHomePage.innerHTML = '';  // Clear current listings
-
-    const startIndex = currentIndex;
-    const endIndex = (currentIndex + 2) % listings.length;  // Display 2 listings at a time
-
-    // Create and append listing cards
-    if (Array.isArray(listings) && listings.length > 0) {
-      for (let i = startIndex; i < startIndex + 2; i++) {
-        const index = i % listings.length;  // Ensure index wraps around
-        const listingCard = simpleListingCard(listings[index]);
-        if (listingCard) {
-          containerHomePage.appendChild(listingCard);  // Append listing card to the homepage container
-        } else {
-          console.error('Failed to create listing card.');
-        }
-      }
-    } else {
-      console.error('No listings available.');
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      displaySingleListingSwitch(listings);
+      switchContainer.classList.remove("d-none");
+      carouselContainer.classList.add("d-none");
+    } else if (window.matchMedia("(min-width: 768px)").matches) {
+      displayCarouselListings(listings);
+      switchContainer.classList.add("d-none");
+      carouselContainer.classList.remove("d-none");
     }
+  } catch (error) {
+    console.error("Failed to fetch listings:", error);
+  }
+}
+
+function displaySingleListingSwitch(listings) {
+  const switchContainer = document.getElementById("switchContainer");
+  switchContainer.innerHTML = '';
+
+  if (listings.length === 0) {
+    switchContainer.innerHTML = "<p>No listings available.</p>";
+    return;
   }
 
-  // Initial display
-  showListings();
+  let index = 0;
 
-  // Switch listings every 6 seconds
-  switchInterval = setInterval(() => {
-    currentIndex = (currentIndex + 2) % listings.length;  // Move to the next set of 2 listings
-    showListings();
-  }, 6000);  // Switch every 6 seconds
+  function updateListing() {
+    switchContainer.innerHTML = '';
+    const listingCard = simpleListingCard(listings[index]);
+    if (listingCard) {
+      switchContainer.appendChild(listingCard);
+    }
+    index = (index + 1) % listings.length;
+  }
+
+  updateListing();
+  setInterval(updateListing, 5000); // Switch listings every 5000ms
 }
+
+function displayCarouselListings(listings) {
+  const carouselContainer = document.getElementById("carouselContainer");
+  carouselContainer.innerHTML = '';
+
+  const carousel = document.createElement("div");
+  carousel.classList.add("carousel", "slide", "m-auto");
+  carousel.setAttribute("id", "carouselExample");
+  carousel.setAttribute("data-bs-ride", "carousel");
+
+  const carouselInner = document.createElement("div");
+  carouselInner.classList.add("carousel-inner");
+
+  let isActive = true;
+  const itemsPerSlide = 2;
+
+  for (let i = 0; i < listings.length; i += itemsPerSlide) {
+    const carouselItem = document.createElement("div");
+    carouselItem.classList.add("carousel-item");
+  
+    if (isActive) {
+      carouselItem.classList.add("active");
+      isActive = false;
+    }
+  
+    const rowContainer = document.createElement("div");
+    rowContainer.classList.add("d-flex", "justify-content-center", "m-auto");
+    rowContainer.style.width = "650px";
+  
+    for (let j = i; j < i + itemsPerSlide && j < listings.length; j++) {
+      const listingCard = simpleListingCard(listings[j]);
+      if (listingCard) {
+        rowContainer.appendChild(listingCard);
+      }
+    }
+  
+    carouselItem.appendChild(rowContainer);
+    carouselInner.appendChild(carouselItem);
+  
+  }
+
+  carousel.appendChild(carouselInner);
+
+// Add the carousel controls using DOM methods to preserve event listeners
+const prevButton = document.createElement("button");
+prevButton.classList.add("carousel-control-prev");
+prevButton.setAttribute("type", "button");
+prevButton.setAttribute("data-bs-target", "#carouselExample");
+prevButton.setAttribute("data-bs-slide", "prev");
+prevButton.innerHTML = `
+  <i class="bi bi-arrow-left-circle"></i>
+  <span class="visually-hidden">Previous</span>
+`;
+
+const nextButton = document.createElement("button");
+nextButton.classList.add("carousel-control-next");
+nextButton.setAttribute("type", "button");
+nextButton.setAttribute("data-bs-target", "#carouselExample");
+nextButton.setAttribute("data-bs-slide", "next");
+nextButton.innerHTML = `
+  <i class="bi bi-arrow-right-circle"></i>
+  <span class="visually-hidden">Next</span>
+`;
+
+// Append the buttons to the carousel
+carousel.appendChild(prevButton);
+carousel.appendChild(nextButton);
+
+  carouselContainer.appendChild(carousel);
+
+  const carouselElement = document.getElementById('carouselExample');
+  if (carouselElement) {
+    new bootstrap.Carousel(carouselElement, {
+      interval: 7000,
+    });
+  }
+}
+
+window.addEventListener('resize', renderHomeListings);
