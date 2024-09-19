@@ -60,7 +60,7 @@ export default function router() {
       console.log("Create listing page setup complete.");
       break;
 
-    case "/feed/listings/singleItem/":
+    case "/feed/listings/singleitem/":
       console.log("Rendering single item page...");
       handlers.renderSingleItem();
       console.log("Single item page setup complete.");
